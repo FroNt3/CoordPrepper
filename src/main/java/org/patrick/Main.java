@@ -25,8 +25,7 @@ public class Main {
     @SuppressWarnings("finally")
     private static boolean readFile() {
         JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                ".txt", "txt");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt");
         chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
@@ -39,7 +38,7 @@ public class Main {
             fileToRead = new Scanner(new File(filename));
             for (String line; fileToRead.hasNextLine() && (line = fileToRead.nextLine()) != null; ) {
                 line = line.replaceFirst("2020/[0-9]+/[0-9]+ [0-9]+:[0-9]+:[0-9]+: \\[", "");
-                line = line.replaceFirst(",[0-9]*.[0-9]*\\]", "");
+                line = line.replaceFirst(",-?[0-9]*.[0-9a-zA-Z-]*\\]", "");
                 stringBufferOfData.append(line).append("\r\n");
             }
             fileToRead.close();
